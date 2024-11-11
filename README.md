@@ -1,4 +1,4 @@
-# Application Name
+# Book-GPT
 
 ## Overview
 This application is built using Docker images as a base. It provides a scalable and efficient way to deploy and manage your application.
