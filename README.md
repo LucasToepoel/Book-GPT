@@ -18,7 +18,7 @@ git clone https://github.com/LucasToepoel/Book-GPT.git
 cd Book-GPT
 ```
 
-This will download the project files to your local machine. Navigate to the project directory using `cd your-repo`.
+This will download the project files to your local machine. Navigate to the project directory using `cd Book-GPT`.
 
 
 
