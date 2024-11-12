@@ -1,63 +1,42 @@
-# Book-GPT
+## Book-GPT: A Scalable Dockerized Application
 
-## Overview
+This application leverages Docker Compose for a streamlined and efficient deployment, allowing you to manage your Book-GPT instance with ease.
 
-This application is built using Docker images as a base. It provides a scalable and efficient way to deploy and manage your application.
+## Installation Requirements
 
-## Prerequisites
+* Docker: Ensure you have Docker installed on your system. Download instructions can be found at [https://www.docker.com/products/docker-desktop/](https://www.docker.com/products/docker-desktop/).
 
-- Docker installed on your machine
-- Docker Compose (optional, if using multiple containers)
+## Using Docker Compose (Recommended)
 
-## Getting Started
+**1. Clone the Repository and Run Docker Compose**
 
-### Clone the Repository
+Start by cloning the Book-GPT repository from GitHub:
 
-```sh
+```bash
 git clone https://github.com/yourusername/your-repo.git
 cd your-repo
 ```
 
-### Build the Docker Image
+This will download the project files to your local machine. Navigate to the project directory using `cd your-repo`.
 
-```sh
-docker build -t your-image-name .
+The project utilizes Docker Compose for managing the multi-container application. Within the project directory, you'll find a file named `docker-compose.yml`. To start all the containers in the background, simply run:
+
+```bash
+docker-compose up -d
 ```
 
-### Run the Docker Container
+This command will:
 
-```sh
-docker run -d -p 80:80 your-image-name
-```
-
-### Using Docker Compose (if applicable)
-
-If your application uses multiple containers, you can use Docker Compose to manage them.
-
-1. Create a `docker-compose.yml` file:
-
-    ```yaml
-    version: '3'
-    services:
-      app:
-        build: .
-        ports:
-          - "80:80"
-    ```
-
-2. Run Docker Compose:
-
-    ```sh
-    docker-compose up -d
-    ```
+* Build the services defined in `docker-compose.yml` (if necessary)
+* Start all the containers in detached mode (-d)
 
 ## Usage
 
-Access the application by navigating to `http://localhost` in your web browser.
+Once the containers are running, access your Book-GPT application at `http://localhost:8000` in your web browser.
 
 ## Contributing
 
-Feel free to submit issues or pull requests if you have any improvements or bug fixes.
+We welcome your contributions! Feel free to submit issues or pull requests for improvements or bug fixes.
 
 ## License
 
@@ -66,3 +45,44 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 ## Contact
 
 For any inquiries, please contact [your-email@example.com](mailto:your-email@example.com).
+
+## Using Single Docker Containers (Optional)
+
+This section outlines how to run individual containers if you prefer a more granular approach.
+
+**1. Pull Pre-built Images**
+
+Start by pulling the pre-built Docker images for the Deep Dive API and Database from the Docker Hub registry:
+
+```bash
+docker pull tiesnoordhuis/deep_dive_api
+docker pull tiesnoordhuis/deep_dive_database
+```
+
+**2. Run the Database Container**
+
+Run the `deep_dive_database` container, mapping its internal port 3306 to your machine's port 3306 for external access:
+
+```bash
+docker run -p 3306:3306 --name deep_dive_database_container tiesnoordhuis/deep_dive_database
+```
+
+**3. Run the API Container**
+
+Run the `deep_dive_api` container, mapping its internal port 8000 to your machine's port 8000 and linking it to the `deep_dive_database_container` using the alias `db`:
+
+```bash
+docker run -p 8000:8000 --link deep_dive_database_container:db --name deep_dive_api_container tiesnoordhuis/deep_dive_api
+```
+
+**4. Optional: Run phpMyAdmin (Database Management Tool)**
+
+If desired, you can run a phpMyAdmin container for visual database management:
+
+```bash
+docker pull phpmyadmin
+docker run --name phpmyadmin -d --link deep_dive_database_container:db -p 8082:80 phpmyadmin
+```
+
+This will expose phpMyAdmin at `http://localhost:8082` allowing you to manage your database content.
+
