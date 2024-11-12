@@ -1,7 +1,11 @@
-## Book-GPT: A Scalable Dockerized Application
 
-This application leverages Docker Compose for a streamlined and efficient deployment, allowing you to manage your Book-GPT instance with ease.
+## Book-GPT: A Web Application for Prompt Engineering
 
+Book-GPT is a web application designed to streamline and enhance the process of prompt engineering. It allows users to:
+
+- Store Prompts: Organize and categorize prompts for easy retrieval.
+- Generate High-Quality Prompts: Utilize AI-powered tools to generate effective and creative prompts.
+- Collaborate: Share prompts and feedback with other users.
 ## Installation Requirements
 
 * Docker: Ensure you have Docker installed on your system. Download instructions can be found at [https://www.docker.com/products/docker-desktop/](https://www.docker.com/products/docker-desktop/).
