@@ -5,8 +5,9 @@ This application leverages Docker Compose for a streamlined and efficient deploy
 ## Installation Requirements
 
 * Docker: Ensure you have Docker installed on your system. Download instructions can be found at [https://www.docker.com/products/docker-desktop/](https://www.docker.com/products/docker-desktop/).
+## Method 1 (recommended):
 
-## Using Docker Compose (Recommended)
+### Using Docker Compose
 
 **1. Clone the Repository and Run Docker Compose**
 
@@ -35,24 +36,9 @@ This command will:
 
 * Build the services defined in `docker-compose.yml` (if necessary)
 * Start all the containers in detached mode (-d)
+## Method 2:
 
-## Usage
-
-Once the containers are running, access your Book-GPT application at `http://localhost:8000` in your web browser.
-
-## Contributing
-
-We welcome your contributions! Feel free to submit issues or pull requests for improvements or bug fixes.
-
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
-## Contact
-
-For any inquiries, please contact [your-email@example.com](mailto:your-email@example.com).
-
-## Using Single Docker Containers (Optional)
+### Using Single Docker Containers
 
 This section outlines how to run individual containers if you prefer a more granular approach.
 
@@ -91,4 +77,23 @@ docker run --name phpmyadmin -d --link deep_dive_database_container:db -p 8082:8
 ```
 
 This will expose phpMyAdmin at `http://localhost:8082` allowing you to manage your database content.
+
+## Usage
+
+Once the containers are running, access your Book-GPT application at `http://localhost:8000` in your web browser.
+
+## Contributing
+
+We welcome your contributions! Feel free to submit issues or pull requests for improvements or bug fixes.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+## Contact
+
+For any inquiries, please contact me here, on github or any other contributor
+
+***this is a practise college project, development goal is a MinimalViableProduct (do not expect any further development)***
+
 
