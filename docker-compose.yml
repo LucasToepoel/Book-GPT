@@ -1,18 +1,27 @@
-version: '3'
+version: '3.8'  # Using the latest version for improved features and security
+
 services:
-    deep_dive_database:
-        image: tiesnoordhuis/deep_dive_database
-        ports:
-            - "3306:3306"
-    deep_dive_api:
-        image: tiesnoordhuis/deep_dive_api
-        ports:
-            - "8000:8000"
-        links:
-            - deep_dive_database:db
-     phpmyadmin (optional): # Uncomment to include phpMyAdmin
-       image: phpmyadmin
-       ports:
-         - "8082:80"
-       links:
-         - deep_dive_database:db
+  deep_dive_database:
+    image: tiesnoordhuis/deep_dive_database
+    ports:
+      - "3306:3306"
+    restart: always  # Ensures the database container restarts if it crashes
+
+  deep_dive_api:
+    image: tiesnoordhuis/deep_dive_api
+    ports:
+      - "8000:8000"
+    depends_on:
+      - deep_dive_database
+    restart: always  # Ensures the API container restarts if it crashes
+
+  phpmyadmin:  # Uncomment to include phpMyAdmin
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - "8080:80"
+    environment:
+      PMA_HOST: deep_dive_database
+      PMA_PORT: 3306
+    depends_on:
+      - deep_dive_database
+    restart: always
