@@ -13,7 +13,7 @@ This application leverages Docker Compose for a streamlined and efficient deploy
 Start by cloning the Book-GPT repository from GitHub:
 
 ```bash
-git clone https://github.com/yourusername/your-repo.git
+git clone [https://github.com/yourusername/your-repo.git](https://github.com/LucasToepoel/Book-GPT.git)
 cd your-repo
 ```
 
