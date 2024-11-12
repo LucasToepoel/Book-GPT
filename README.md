@@ -14,7 +14,7 @@ Start by cloning the Book-GPT repository from GitHub:
 
 ```bash
 git clone https://github.com/LucasToepoel/Book-GPT.git
-cd your-repo
+cd Book-GPT
 ```
 
 This will download the project files to your local machine. Navigate to the project directory using `cd your-repo`.
