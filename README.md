@@ -19,7 +19,13 @@ cd your-repo
 
 This will download the project files to your local machine. Navigate to the project directory using `cd your-repo`.
 
-The project utilizes Docker Compose for managing the multi-container application. Within the project directory, you'll find a file named `docker-compose.yml`. To start all the containers in the background, simply run:
+
+
+The project utilizes Docker Compose for managing the multi-container application. Within the project directory, you'll find a file named `docker-compose.yml`.
+
+**(now if you already have a database manager, or do not wish to alter the DB using one, remove phpmyadmin from the yml file instructions)**
+
+To start all the containers in the background, simply run:
 
 ```bash
 docker-compose up -d
