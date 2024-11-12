@@ -1,4 +1,3 @@
-version: '3'
 services:
     deep_dive_database:
         image: tiesnoordhuis/deep_dive_database
