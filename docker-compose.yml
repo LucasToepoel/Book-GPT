@@ -1,0 +1,18 @@
+version: '3'
+services:
+    deep_dive_database:
+        image: tiesnoordhuis/deep_dive_database
+        ports:
+            - "3306:3306"
+    deep_dive_api:
+        image: tiesnoordhuis/deep_dive_api
+        ports:
+            - "8000:8000"
+        links:
+            - deep_dive_database:db
+    # phpmyadmin (optional): # Uncomment to include phpMyAdmin
+    #   image: phpmyadmin
+    #   ports:
+    #     - "8082:80"
+    #   links:
+    #     - deep_dive_database:db
