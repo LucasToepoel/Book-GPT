@@ -21,13 +21,13 @@
   </div>
   <button class="btn btn-primary" id="saveButton">Save Text</button>
 </div>
-<script src="helper.js" ></script>
+<script src="helper.js"></script>
 
 <script>
   document.getElementById('saveButton').addEventListener('click', async function() {
     const text = document.getElementById('fancyTextarea').value;
     const fragments = text.split(/\n\n+/);
-
+console.log("it is i this sccript yes");
     try {
       for (const fragment of fragments) {
         const fragmentObject = createPromptFragmentObject(1, fragment, "testfragment");

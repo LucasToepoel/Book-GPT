@@ -176,16 +176,17 @@ const fetchPromptFragments = async () => {
 };
 
 const createPromptFragment = async (fragment) => {
+    console.log('Creating prompt fragment with data:', fragment);
     const response = await fetch('http://localhost:8000/prompt_fragments', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({
-            "author_id": fragment.authorId,
-            "content": fragment.content,
-            "description": fragment.description // Add a description if needed
-        })
+        body: json.stringify({
+            author_id: 1,
+            content: "string",
+            description: "string"
+          })
     });
     if (response.ok) {
         return await response.json();
