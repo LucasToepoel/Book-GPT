@@ -1,6 +1,6 @@
 
   async function handleSaveButtonClick() {
-    const text = document.getElementById('fancyTextarea').value;
+    const text = document.getElementById('textarea').value;
     if (!text.trim()) {
       console.log('Textarea is empty. Nothing to save.');
       return;
@@ -20,20 +20,17 @@
       }
     }
     const prompt = createCompositePromptObject(1, "Sample Title", "Sample Description");
-    console.log('Creating prompt object:', prompt);
     const createdPrompt = await createCompositePrompt(prompt);
     console.log('Composite prompt created:', createdPrompt);
     try {
       for (const fragment of fragments) {
         const fragmentObject = createPromptFragmentObject(createdPrompt.author_id, fragment, descriptions[fragments.indexOf(fragment)]);
-        console.log('Creating fragment object:', fragmentObject);
         const createdFragment = await createPromptFragment(fragmentObject);
         console.log('Fragment created:', createdFragment);
-
         await linkFragmentToCompositePrompt(createdPrompt.id, createdFragment.id, fragments.indexOf(fragment));
         console.log(`Linked fragment ${createdFragment.id} to composite prompt ${createdPrompt.id}`);
       }
-      console.log('Text saved successfully!');
+      console.log('Prompt saved successfully!');
     } catch (error) {
       console.error('Error saving text:', error);
     }

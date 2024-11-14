@@ -176,7 +176,6 @@ const fetchPromptFragments = async () => {
 };
 
 const createPromptFragment = async (fragment) => {
-    console.log("I am here");
     const response = await fetch('http://localhost:8000/prompt_fragments', {
         method: 'POST',
         headers: {
@@ -188,8 +187,6 @@ const createPromptFragment = async (fragment) => {
             description: fragment.description
           })
     });
-
-   console.log("2");
     if (response.ok) {
         return await response.json();
     } else {
