@@ -19,3 +19,5 @@ services:
         image: ltoepoel/website
         ports:
             - "8080:80"
+        volumes:
+            - ./Website/src/:/usr/share/nginx/html

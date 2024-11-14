@@ -424,7 +424,6 @@ const linkFragmentToCompositePrompt = async (compositeId, fragmentId, order) => 
         })
     });
     if (response.ok) {
-        console.log("I worked");
         return;
     } else {
         throw new Error('Error linking fragment to composite prompt');
