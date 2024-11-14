@@ -31,9 +31,13 @@
         console.log(`Linked fragment ${createdFragment.id} to composite prompt ${createdPrompt.id}`);
       }
       console.log('Prompt saved successfully!');
+      return createdPrompt;
     } catch (error) {
       console.error('Error saving text:', error);
     }
   }
 
-  document.getElementById('saveButton').addEventListener('click', handleSaveButtonClick);
+  document.getElementById('saveButton').addEventListener('click', async () => {
+    const response = await handleSaveButtonClick();
+  console.log('Result:', response);
+  });
