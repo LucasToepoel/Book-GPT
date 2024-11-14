@@ -176,18 +176,20 @@ const fetchPromptFragments = async () => {
 };
 
 const createPromptFragment = async (fragment) => {
-    console.log('Creating prompt fragment with data:', fragment);
+    console.log("I am here");
     const response = await fetch('http://localhost:8000/prompt_fragments', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: json.stringify({
-            author_id: 1,
-            content: "string",
-            description: "string"
+        body: JSON.stringify({
+            author_id: fragment.authorId,
+            content: fragment.content,
+            description: fragment.description
           })
     });
+
+   console.log("2");
     if (response.ok) {
         return await response.json();
     } else {
@@ -356,7 +358,7 @@ const createCompositePrompt = async (prompt) => {
         body: JSON.stringify({
             "author_id": prompt.authorId,
             "title": prompt.title,
-            "description": prompt.description 
+            "description": prompt.description
         })
     });
     if (response.ok) {
@@ -425,6 +427,7 @@ const linkFragmentToCompositePrompt = async (compositeId, fragmentId, order) => 
         })
     });
     if (response.ok) {
+        console.log("I worked");
         return;
     } else {
         throw new Error('Error linking fragment to composite prompt');

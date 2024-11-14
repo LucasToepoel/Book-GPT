@@ -10,6 +10,8 @@
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" 
   crossorigin="anonymous" defer></script>
+  <script src="helper.js" ></script>
+<script src="main.js" defer></script>
 
 </head>
 <body>
@@ -21,24 +23,5 @@
   </div>
   <button class="btn btn-primary" id="saveButton">Save Text</button>
 </div>
-<script src="helper.js"></script>
-
-<script>
-  document.getElementById('saveButton').addEventListener('click', async function() {
-    const text = document.getElementById('fancyTextarea').value;
-    const fragments = text.split(/\n\n+/);
-console.log("it is i this sccript yes");
-    try {
-      for (const fragment of fragments) {
-        const fragmentObject = createPromptFragmentObject(1, fragment, "testfragment");
-        await createPromptFragment(fragmentObject);
-      }
-      alert('Text saved successfully!');
-    } catch (error) {
-      alert('Failed to save text.');
-    }
-  });
-</script>
-
 </body>
 </html>
