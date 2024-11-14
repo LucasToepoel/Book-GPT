@@ -65,8 +65,8 @@ const createPromptFragmentObject = (authorId, content, description) => {
  * @param {string} description
  * @returns {Tag}
  */
-const createTagObject = (name, color, description) => {
-    return { name, color, description };
+const createTagObject = (name, description) => {
+    return { name, description };
 };
 
 /**
