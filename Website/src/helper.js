@@ -1,20 +1,100 @@
 //constructors for the objects
+/**
+ * @typedef {Object} Author
+ * @property {number} id
+ * @property {string} name
+ */
+
+/**
+ * @typedef {Object} PromptFragment
+ * @property {number} authorId
+ * @property {string} content
+ * @property {string} description
+ */
+
+/**
+ * @typedef {Object} Tag
+ * @property {string} name
+ * @property {string} color
+ * @property {string} description
+ */
+
+/**
+ * @typedef {Object} CompositePrompt
+ * @property {number} authorId
+ * @property {string} title
+ * @property {string} description
+ */
+
+/**
+ * @typedef {Object} ResultExample
+ * @property {number} compositePromptId
+ * @property {string} resultContent
+ */
+
+/**
+ * @typedef {Object} ContextFile
+ * @property {number} compositePromptId
+ * @property {string} filename
+ * @property {string} filePath
+ * @property {string} description
+ */
+
+/**
+ * @param {number} id
+ * @param {string} name
+ * @returns {Author}
+ */
 const createAuthorObject = (id, name) => {
     return { id, name };
 };
+
+/**
+ * @param {number} authorId
+ * @param {string} content
+ * @param {string} description
+ * @returns {PromptFragment}
+ */
 const createPromptFragmentObject = (authorId, content, description) => {
     return { authorId, content, description };
 };
+
+/**
+ * @param {string} name
+ * @param {string} color
+ * @param {string} description
+ * @returns {Tag}
+ */
 const createTagObject = (name, color, description) => {
     return { name, color, description };
 };
+
+/**
+ * @param {number} authorId
+ * @param {string} title
+ * @param {string} description
+ * @returns {CompositePrompt}
+ */
 const createCompositePromptObject = (authorId, title, description) => {
     return { authorId, title, description };
 };
 
+/**
+ * @param {number} compositePromptId
+ * @param {string} resultContent
+ * @returns {ResultExample}
+ */
 const createResultExampleObject = (compositePromptId, resultContent) => {
     return { compositePromptId, resultContent };
 };
+
+/**
+ * @param {number} compositePromptId
+ * @param {string} filename
+ * @param {string} filePath
+ * @param {string} description
+ * @returns {ContextFile}
+ */
 const createContextFileObject = (compositePromptId, filename, filePath, description) => {
     return { compositePromptId, filename, filePath, description };
 };
@@ -95,22 +175,23 @@ const fetchPromptFragments = async () => {
     }
 };
 
-const createPromptFragment = async (fragment, authorId) => {
+const createPromptFragment = async (fragment) => {
     const response = await fetch('http://localhost:8000/prompt_fragments', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            author_id: authorId,
-            content: fragment.content,
-            description: fragment.description // Add a description if needed
+            "author_id": fragment.authorId,
+            "content": fragment.content,
+            "description": fragment.description // Add a description if needed
         })
     });
     if (response.ok) {
         return await response.json();
     } else {
-        throw new Error('Error creating prompt fragment');
+        const errorMessage = `Error creating prompt fragment: ${JSON.stringify(fragment)}`;
+        throw new Error(errorMessage);
     }
 };
 
@@ -130,7 +211,7 @@ const updatePromptFragment = async (id, fragment) => {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            author_id: authorId,
+            author_id: fragment.authorId,
             content: fragment.content,
             description: fragment.description // Add a description if needed
         })
@@ -206,7 +287,7 @@ const createTag = async (tag) => {
         body: JSON.stringify({
             name: tag.name,
             content: tag.color,
-            description: description 
+            description: tag.description 
         })
     });
     if (response.ok) {
@@ -234,7 +315,7 @@ const updateTag = async (id, tag) => {
         body: JSON.stringify({
             name: tag.name,
             content: tag.color,
-            description: description 
+            description: tag.description 
         })
     });
     if (response.ok) {
